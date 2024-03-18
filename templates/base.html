@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'my_blog/css/index.css'%}">
+    <title>{% block title%}{% endblock %}</title>
+</head>
+<body>
+
+    <!-- /.header -->
+    <header>
+
+        <a href="{% url 'home' %}"><img class="logo" src="/static/media/lable_img.png" width="150px" alt="Логотип"><img class="logo" src="/static/media/lable_img.png" width="150px" alt="Логотип"></a>
+
+        <ul>
+            <li class="reg">
+
+                    {% if user.is_authenticated %}
+                        <p> <strong><a href="{% url 'create' %}" class="creat creat_story">добавить рассказ</a> </strong><br>|
+                            <a href="{% url 'users:logout' %}" class="exet">Выйти</a> | {{ user.username }}</p>
+                    {% else %}
+                        <a href="{% url 'users:login' %}" class="login">Войти</a>
+                        <a href="{% url 'users:register' %}" class="regis">Регистрация</a>
+                        <!-- /.regis -->
+                    {% endif %}
+                </li>
+        </ul>
+
+        <nav>
+
+            <ul>
+                <li class="home"><a href="{% url 'home' %}" >Главная</a></li>
+                <li class="about"><a href="{% url 'about' %}" >О нас</a></li>
+                <li class="catalog"><a href="{% url 'catalog_home' %}" >каталог</a></li>
+
+            </ul>
+
+
+        </nav>
+        <h1 class="hello">Добро пожаловать в "The world of stories!"</h1><br>{{ title }}
+
+    </header>
+
+    <main>
+
+        <section>
+            {% block content %}
+
+            {% endblock %}
+        </section>
+
+    </main>
+    <footer>
+        <p>&copy; 2024  {{ title }} </p>
+
+    </footer>
+</body>
+</html>

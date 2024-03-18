@@ -1,0 +1,58 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %}</title>
+    <script src="https://kit.fontawesome.com/cebf0c09a6.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'my_blog/css/index.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css">
+
+</head>
+<body>
+
+    <!-- /.logotip -->
+
+    <aside>
+
+        <div class="logotip">
+            <a href="{% url 'home' %}"><img class="logo " src="{% static 'my_blog/img/wepik-professional-minimalist-booky-book-fair-logo-20240306073937J9L7.png'  %} " alt="book"></a>
+
+        </div>
+
+        <div class="cont">
+
+            <ul class="nav">
+                <a href="{% url 'home' %}" class="lin"><li><button><i class="fa-solid fa-house"></i>Главная</button></li></a>
+                <a href="{% url 'about' %}" class="lin"><li><button><i class="fa-solid fa-address-card"></i>О нас</button></li></a>
+                <a href="{% url 'catalog_home' %}" class="lin"><li><button><i class="fa-solid fa-file-contract"></i>Каталог</button></li></a>
+                <a href="{% url 'create' %}" class="lin"><li><button class="add"><i class="fas fa-plus-circle">Добавить рассказ</i></button></li></a>
+            </ul>
+                <ul class="regist">
+
+                    {% if user.is_authenticated %}
+                        <li class="username">{{user.username}} | <a href="{% url 'users:logout' %}">Выйти</a></li>
+                    {% else %}
+                        <a href="{% url 'users:login' %}" class="log"><li class="text-link">Войти</li></a>
+                        <a href="{% url 'users:register' %}" class="reg"><li class="text-link">Регистрация</li></a>
+
+                    {% endif %}
+                </ul>
+
+        </div>
+
+
+
+
+    </aside>
+    <main>
+       {% block content %}
+        {% endblock %}
+    </main>
+
+</body>
+</html>

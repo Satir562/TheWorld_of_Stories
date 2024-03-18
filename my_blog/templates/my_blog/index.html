@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="features">
+
+        <h1 class="title">The world of stories</h1>
+        <p class="hello"><strong>Привет! <br> Добро пожаловать на сайт! <br> Чтобы ознакомится с каталогом нажмите на кнопку</strong></p>
+        <img src="/static/media/6687957.png" width="25" height="25" alt="Стрелка в низ"><br>
+        <a href="{% url 'catalog_home' %}"><button class="button-cat">Каталог</button></a>
+        <!-- /.btn -->
+    
+    </div>
+
+{% endblock %}
+
+{% block title %}
+    Главная
+{% endblock %}

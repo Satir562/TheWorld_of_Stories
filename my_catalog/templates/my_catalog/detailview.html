@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{{ title }}</h1>
+    <div class="features">
+        <h1 class="title">{{ post.title }}</h1>
+        {% if post.poster %}
+            <p><img src="{{ post.poster.url }}" width = '560'   alt="{{ post.title }}"></p>
+        {% else %}
+            <p>Нет постера</p>
+        {% endif %}
+        <p class="content">{{ post.content }}</p>
+        
+        <p class="datetime">{{ post.date_publisher }}</p>
+        {% if  user.is_authenticated%}
+            <a href="{% url 'story-delete' post.id %}" class="btn btn-danger">Удалить</a>
+            <a href="{% url 'story-update' post.id %}" class="btn btn-warning">Редактировать</a>
+        {% else %}    
+            <h4>Вам надо зарегистрироватся чтобы изменять или удалять статьи!</h4>
+        {% endif %}
+
+    </div>
+
+{% endblock %}
+
+{% block title %}
+{{ post.title }}
+{% endblock %}
